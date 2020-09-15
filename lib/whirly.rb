@@ -30,6 +30,7 @@ module Whirly
     spinner_packs: [:whirly, :cli],
     status: nil,
     stream: $stdout,
+    prefix: nil
   }.freeze
 
   SOFT_DEFAULT_OPTIONS = {
@@ -227,6 +228,7 @@ module Whirly
     res << "\n" if @options[:position] == "below"
     res << "\e7" if @options[:ansi_escape_mode] == "restore"
     res << "\e[G" if @options[:ansi_escape_mode] == "line"
+    res << options[:prefix] if @options[:prefix]
     res
   end
 

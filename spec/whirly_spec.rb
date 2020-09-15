@@ -337,6 +337,24 @@ describe Whirly do
     end
   end
 
+  describe "Prefix" do
+    it "will render prefix" do
+      Whirly.start(prefix: " ")
+      short_sleep
+      Whirly.stop
+
+      assert_match /\s/, @capture.string
+    end
+
+    it "will not render prefix" do
+      Whirly.start
+      short_sleep
+      Whirly.stop
+
+      refute_equal /\s/, @capture.string
+    end
+  end
+
   describe "Configure and Reset" do
     it "can be configured before starting" do
       Whirly.configure spinner: "dots", interval: 5
